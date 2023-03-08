@@ -19,6 +19,23 @@ public class ResourceManager : MonoBehaviour
     public int maxPremiumCurrency;
     private int _premiumCurrency = 0;
 
+    public static ResourceManager Instance;
+
+    public bool debugBool = false;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    private void Update()
+    {
+        if (debugBool)
+        {
+            PrintCurrentResources();
+            debugBool = false;
+        }
+    }
     /// <summary>
     /// Adds more metals to inventory
     /// </summary>
@@ -61,5 +78,13 @@ public class ResourceManager : MonoBehaviour
         _premiumCurrency += amount;
 
         //TODO: Update the PremiumCurrency UI to show the correct amount of PremiumCurrency.
+    }
+
+    void PrintCurrentResources()
+    {
+        Debug.Log("Metal" + _metals);
+        Debug.Log("Semiconductors" + _semiconductors);
+        Debug.Log("StandartCurrency" + _mainCurrency);
+        Debug.Log("PremiumCurrency" + _premiumCurrency);
     }
 }

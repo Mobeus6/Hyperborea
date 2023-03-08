@@ -1392,7 +1392,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1416,7 +1416,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.19208829, y: -0.3341014, z: 0.06975279, w: 0.9201157}
-  m_LocalPosition: {x: 162.5641, y: 106.09914, z: -174.58334}
+  m_LocalPosition: {x: 163.38, y: 106.09914, z: -174.58334}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2632,9 +2632,12 @@ MonoBehaviour:
   levelLenght: 20
   tilesHolder: {fileID: 143065111}
   tileSize: 1
+  tileEndHeight: 0.8
   metalPrefab: {fileID: 9142689262324162110, guid: 12c911b35d4f23341ae21c4ad7a3846a, type: 3}
   semiconductorPrefab: {fileID: 6814191622805459154, guid: 7a6dec1f57d018e4ca8fd9bc5de5033a, type: 3}
-  obstacleChance: 0.3
+  obstacleChance: 0.5
+  xBounds: 3
+  zBounds: 3
 --- !u!114 &1467148971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2651,6 +2654,7 @@ MonoBehaviour:
   maxSemiconductors: 0
   maxMainCurrency: 0
   maxPremiumCurrency: 0
+  debugBool: 0
 --- !u!1 &1744081083
 GameObject:
   m_ObjectHideFlags: 0

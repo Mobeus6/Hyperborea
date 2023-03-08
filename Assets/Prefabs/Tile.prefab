@@ -116,5 +116,4 @@ MonoBehaviour:
       width: 0
       lenght: 0
       resourseType: 0
-    isOccupied: 0
     obstacleType: 0
