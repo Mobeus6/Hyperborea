@@ -7,7 +7,7 @@ public class Tile
     //Type of obstruction.
     public ObstacleType obstacleType;
 
-    private bool IsStarterTile;
+    private bool IsStarterTile = true;
 
     //Type of obstraction which is occupiyng the grid.
     public enum ObstacleType
