@@ -23,8 +23,14 @@ public class ResourceManager : MonoBehaviour
 
     public bool debugBool = false;
 
+    public int Metals { get => _metals; set => _metals = value; }
+    public int Semiconductors { get => _semiconductors; set => _semiconductors = value; }
+    public int MainCurrency { get => _mainCurrency; set => _mainCurrency = value; }
+    public int PremiumCurrency { get => _premiumCurrency; set => _premiumCurrency = value; }
+
     private void Awake()
     {
+        //Initializing singletone pattern (not for production).
         Instance = this;
     }
 
@@ -40,51 +46,96 @@ public class ResourceManager : MonoBehaviour
     /// Adds more metals to inventory
     /// </summary>
     /// <param name="amount">Amount to add to our existing metals</param>
-    public void AddMetals(int amount)
+    public bool AddMetals(int amount)
     {
-        _metals += amount;
+        if((_metals+amount) <= maxMetals)
+        {
+            Metals += amount;
 
-        //TODO: Update the metals UI to show the correct amount of metals.
+            //Update corresponding UI
+            UIManager.Instance.UpdateMetalsUI(Metals, maxMetals);
+
+            return true;
+        }
+
+        else
+        {
+            return false;
+        } 
     }
 
     /// <summary>
     /// Adds more Semiconductors to inventory
     /// </summary>
     /// <param name="amount">Amount to add to our existing metals</param>
-    public void AddSemiconductors(int amount)
+    public bool AddSemiconductors(int amount)
     {
-        _semiconductors += amount;
+        if ((_semiconductors + amount) <= maxSemiconductors)
+        {
+            Semiconductors += amount;
 
-        //TODO: Update the Semiconductors UI to show the correct amount of Semiconductors.
+            //Update corresponding UI
+            UIManager.Instance.UpdateSemiconductorsUI(Semiconductors, maxSemiconductors);
+
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
     }
 
     /// <summary>
     /// Adds more MainCurrency to inventory
     /// </summary>
     /// <param name="amount">Amount to add to our existing MainCurrency</param>
-    public void AddMainCurrency(int amount)
+    public bool AddMainCurrency(int amount)
     {
-        _mainCurrency += amount;
+        if ((_mainCurrency + amount) <= maxMainCurrency)
+        {
+            MainCurrency += amount;
 
-        //TODO: Update the MainCurrency UI to show the correct amount of Semiconductors.
+            //Update corresponding UI
+            UIManager.Instance.UpdateMetalsUI(MainCurrency, maxMainCurrency);
+
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
+
     }
 
     /// <summary>
     /// Adds more PremiumCurrency to inventory
     /// </summary>
     /// <param name="amount">Amount to add to our existing MainCurrency</param>
-    public void AddPremiumCurrency(int amount)
+    public bool AddPremiumCurrency(int amount)
     {
-        _premiumCurrency += amount;
+        if ((_premiumCurrency + amount) <= maxPremiumCurrency)
+        {
+            _premiumCurrency += amount;
 
-        //TODO: Update the PremiumCurrency UI to show the correct amount of PremiumCurrency.
+            //Update corresponding UI
+            UIManager.Instance.UpdateMetalsUI(_premiumCurrency, maxPremiumCurrency);
+
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
     }
 
     void PrintCurrentResources()
     {
-        Debug.Log("Metal" + _metals);
-        Debug.Log("Semiconductors" + _semiconductors);
-        Debug.Log("StandartCurrency" + _mainCurrency);
+        Debug.Log("Metal" + Metals);
+        Debug.Log("Semiconductors" + Semiconductors);
+        Debug.Log("StandartCurrency" + MainCurrency);
         Debug.Log("PremiumCurrency" + _premiumCurrency);
     }
 }

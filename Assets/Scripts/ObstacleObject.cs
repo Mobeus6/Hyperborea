@@ -13,18 +13,33 @@ public class ObstacleObject : MonoBehaviour
         Debug.Log("Clicked on " + gameObject.name);
 
         //OnClick Event
+        bool usedResource = false;
 
         //We can call directly the method that adds resource.
         switch (obstacleType)
         {
             case ObstacleType.Metals:
-                ResourceManager.Instance.AddMetals(resourceAmount);
+
+                usedResource = ResourceManager.Instance.AddMetals(resourceAmount); 
+                    
                 break;
+
             case ObstacleType.Semiconductors:
-                ResourceManager.Instance.AddMetals(resourceAmount);
-                break;
-            default:
-                break;
+
+                usedResource = ResourceManager.Instance.AddSemiconductors(resourceAmount);
+
+                break;               
+        }
+
+        if (usedResource)
+        {
+            usedResource = false;
+            Destroy(gameObject);
+        }
+
+        else
+        {
+            Debug.Log("Couldn`t destroy as inventory is full");
         }
     }
 
